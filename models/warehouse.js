@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const config = require('../config/db');
 
 //User schema
-const LagerSchema = mongoose.Schema({
+const WarehouseSchema = mongoose.Schema({
 	name:{
 		type: String,
 		required: true,
@@ -22,4 +22,4 @@ const LagerSchema = mongoose.Schema({
 	}
 });
 
-const Lager = module.exports = mongoose.model('Lager', LagerSchema);
+const Warehouse = module.exports = mongoose.model('Warehouse', WarehouseSchema);

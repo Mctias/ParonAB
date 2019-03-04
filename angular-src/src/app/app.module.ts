@@ -15,8 +15,7 @@ import { CreateLagerComponent } from './components/create-lager/create-lager.com
 
 import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
-import {ProductService} from './services/product.service';
-import {LagerService} from './services/lager.service';
+import {WarehouseService} from './services/warehouse.service';
 import {DeliveryService} from './services/delivery.service';
 import {AuthGuard} from './guards/auth.guard';
 import { NewDeliveryComponent } from './components/new-delivery/new-delivery.component';
@@ -52,7 +51,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ValidateService, AuthService, ProductService, LagerService, DeliveryService, AuthGuard],
+  providers: [ValidateService, AuthService, WarehouseService, DeliveryService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

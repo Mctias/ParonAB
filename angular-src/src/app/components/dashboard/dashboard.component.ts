@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductService} from '../../services/product.service';
-import {LagerService} from '../../services/lager.service';
+import {WarehouseService} from '../../services/warehouse.service';
 import {Router} from '@angular/router';
 
 
@@ -11,16 +10,15 @@ import {Router} from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 	name: String;
-  lagers: any;
+  warehouses: any;
   chart: any;
 
-  constructor(private productService: ProductService,
-              private lagerService: LagerService) { }
+  constructor(private warehouseService: WarehouseService) { }
 
   ngOnInit() {
-    this.lagerService.getLager().subscribe(lager =>{
-      this.lagers = lager;
-      console.log(lager);
+    this.warehouseService.getWarehouse().subscribe(data =>{
+      this.warehouses = data;
+      console.log(data);
     },err => {
       console.log(err);
     });

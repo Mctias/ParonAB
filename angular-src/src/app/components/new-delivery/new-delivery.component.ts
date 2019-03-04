@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{LagerService} from '../../services/lager.service';
+import{WarehouseService} from '../../services/warehouse.service';
 import{DeliveryService} from '../../services/delivery.service';
 import {Router} from '@angular/router';
 
@@ -10,23 +10,23 @@ import {Router} from '@angular/router';
 })
 export class NewDeliveryComponent implements OnInit {
 
-  lagers: any;
+  warehouses: any;
   name: string;
   deliveries: any;
 
-  lager: string;
+  warehouse: string;
   pName: string; //Product name
   noItems: number;
   date: string;
 
-  constructor(private lagerService: LagerService,
+  constructor(private warehouseService: WarehouseService,
   			  private deliveryService: DeliveryService,
   			  private router: Router) { }
   
   //On init get all the warehouses
   ngOnInit() {
-  	this.lagerService.getLager().subscribe(lager =>{
-      this.lagers = lager;
+  	this.warehouseService.getWarehouse().subscribe(warehouse =>{
+      this.warehouses = warehouse;
     },err => {
       console.log(err);
     });
@@ -35,13 +35,13 @@ export class NewDeliveryComponent implements OnInit {
   //On add delivery create new delviery and update stocks
   onAddDelivery(){
     const delivery = {
-      name: this.lager,
+      name: this.warehouse,
       pName: this.pName, //Product name
       noItems: this.noItems,
       date: this.date.toString() //Parse date to string
     }
-    console.log(this.lager);
-    this.lagerService.updateWarehouse(delivery).subscribe(data => {
+    console.log(this.warehouse);
+    this.warehouseService.updateWarehouse(delivery).subscribe(data => {
       if(data.success){
         this.addDeliver(delivery);
         //Renavigate to dashboard

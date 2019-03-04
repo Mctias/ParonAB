@@ -10,11 +10,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor ="let lager of lagers">
-      <th scope="col">{{lager.name}}</th>
-      <td>{{lager.products.jPlatta.noItems}}</td>
-      <td>{{lager.products.jTelefon.noItems}}</td>
-      <td>{{lager.products.Paronklocka.noItems}}</td>
+    <tr *ngFor ="let warehouse of warehouses">
+      <th scope="col">{{warehouse.name}}</th>
+      <td>{{warehouse.products.jPlatta.noItems}}</td>
+      <td>{{warehouse.products.jTelefon.noItems}}</td>
+      <td>{{warehouse.products.Paronklocka.noItems}}</td>
     </tr>
   </tbody>
 </table>

@@ -13,8 +13,8 @@
 	<label>Warehouse</label>
 	<!-- Choose one of the warehouses -->
 	<div class="form-group">
-		<select class = "form-control" id="selector1" [(ngModel)]="lager" name = "lager">
-			<option *ngFor = "let lagera of lagers" [value] = "lagera.name">{{lagera.name}}
+		<select class = "form-control" id="selector1" [(ngModel)]="warehouse" name = "warehouse">
+			<option *ngFor = "let warehouseI of warehouses" [value] = "warehouseI.name">{{warehouseI.name}}
 			</option>
 		</select>
 	</div>

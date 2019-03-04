@@ -19,8 +19,7 @@ mongoose.connection.on('error', ()=>{
 const app = express();
 
 const users = require('./routes/users');
-const products = require('./routes/products');
-const lagers = require('./routes/lagers');
+const warehouses = require('./routes/warehouses');
 const deliveries = require('./routes/deliveries');
 
 //Port number
@@ -40,8 +39,7 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 app.use('/users', users);
-app.use('/products', products);
-app.use('/lagers', lagers);
+app.use('/warehouses', warehouses);
 app.use('/deliveries', deliveries);
 
 app.get('/', (req, res)=>{

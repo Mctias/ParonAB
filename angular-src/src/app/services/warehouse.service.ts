@@ -3,29 +3,28 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class LagerService {
-  lager: any;
+export class WarehouseService {
+  warehouse: any;
 
   constructor(private http:Http) { }
 
-  createLager(lager){
+  createWarehouse(warehouse){
   	let headers = new Headers();
   	headers.append('Content-Type', 'application/json');
-  	return this.http.post('http://localhost:3000/lagers/addLager', JSON.stringify(lager), {headers: headers})
+  	return this.http.post('http://localhost:3000/warehouses/addWarehouse', JSON.stringify(warehouse), {headers: headers})
   		.map(res => res.json()); //(endpoint, object, headers).map(response as json)
   }
 
   updateWarehouse(data){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.put('http://localhost:3000/lagers/addDelivery', JSON.stringify(data), {headers: headers})
+    return this.http.put('http://localhost:3000/warehouses/updateWarehouse', JSON.stringify(data), {headers: headers})
       .map(res => res.json()); //(endpoint, object, headers).map(response as json)
 
   }
 
-
-  getLager(){
-  	return this.http.get('http://localhost:3000/lagers/lager').map(res => res.json());	
+  getWarehouse(){
+  	return this.http.get('http://localhost:3000/warehouses/warehouse').map(res => res.json());	
   }
 
 }

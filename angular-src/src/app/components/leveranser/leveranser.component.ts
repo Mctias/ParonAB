@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import{LagerService} from '../../services/lager.service';
 import{DeliveryService} from '../../services/delivery.service';
 import{Router} from '@angular/router'
 
@@ -11,11 +10,7 @@ import{Router} from '@angular/router'
 export class LeveranserComponent implements OnInit {
   deliveries: any;
 
-
-
-
-  constructor(private lagerService:LagerService,
-              private deliveryService:DeliveryService,
+  constructor(private deliveryService:DeliveryService,
               private router: Router) { }
 
   ngOnInit() {   

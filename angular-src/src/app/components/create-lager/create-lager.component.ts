@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LagerService} from '../../services/lager.service';
+import {WarehouseService} from '../../services/warehouse.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ export class CreateLagerComponent implements OnInit {
 	pName: String;
 	noItems: Number;
 
-  constructor(private lagerService:LagerService,
+  constructor(private warehouseSevice:WarehouseService,
   			  private router:Router) { }
 
   ngOnInit() {
@@ -21,9 +21,9 @@ export class CreateLagerComponent implements OnInit {
   	const lager = {
   		name: this.name
   	}
-  	this.lagerService.createLager(lager).subscribe(data=>{
+  	this.warehouseSevice.createWarehouse(lager).subscribe(data=>{
   		if(data.success){
-  			console.log('Lager added!');
+  			console.log('Warehouse added!');
   			this.router.navigate(['/dashboard']);
   		}
   		else{
