@@ -5,11 +5,13 @@ const config = require('../config/db');
 //User schema
 const UserSchema = mongoose.Schema({
 	name:{
-		type: String
+		type: String,
+		unique: true
 	},
 	email:{
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	password: {
 		type: String,
@@ -19,15 +21,18 @@ const UserSchema = mongoose.Schema({
 
 const User = module.exports = mongoose.model('User', UserSchema);
 
+//Function to find user by id
 module.exports.getUserById = function(id, cb){
 	User.findById(id, cb);
 }
 
+//Function to find user by name
 module.exports.getUserByName = function(name, cb){
 	const query = {name: name};
 	User.findOne(query, cb);
 }
 
+//Function to add user to the db. Hashes password
 module.exports.addUser = function(newUser, cb){
 	bcrypt.genSalt(10, (err, salt)=>{
 		bcrypt.hash(newUser.password, salt, (err, hash)=>{
@@ -42,6 +47,7 @@ module.exports.addUser = function(newUser, cb){
 	});
 }
 
+//Compares the password with the hashed password
 module.exports.comparePassword = function(password, hashedPassword, cb){
 	bcrypt.compare(password, hashedPassword, (err, isMatch)=>{
 		if(err)

@@ -11,10 +11,10 @@
           <a class="nav-link" [routerLink]="['/dashboard']">Stock</a>
         </li>
         <li *ngIf="authService.loggedIn()" class="nav-item"  [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
-          <a class="nav-link" [routerLink]="['/leveranser']">Deliveries</a>
+          <a class="nav-link" [routerLink]="['/deliveries']">Deliveries</a>
         </li>
         <li *ngIf="authService.loggedIn()">
-          <a class="nav-link" [routerLink]="['/createLager']">Create warehouse</a>
+          <a class="nav-link" [routerLink]="['/createWarehouse']">Create warehouse</a>
         </li>
       </ul>
       <ul class = "nav navbar-nav navbar-right">

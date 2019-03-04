@@ -3,11 +3,11 @@ import {WarehouseService} from '../../services/warehouse.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-create-lager',
-  templateUrl: './create-lager.component.html',
-  styleUrls: ['./create-lager.component.css']
+  selector: 'app-create-warehouse',
+  templateUrl: './create-warehouse.component.html',
+  styleUrls: ['./create-warehouse.component.css']
 })
-export class CreateLagerComponent implements OnInit {
+export class CreateWarehouseComponent implements OnInit {
 	name: String;
 	pName: String;
 	noItems: Number;
@@ -17,11 +17,12 @@ export class CreateLagerComponent implements OnInit {
 
   ngOnInit() {
   }
+  //We create the warehose
   onCreateLager(){
-  	const lager = {
+  	const warehouse = {
   		name: this.name
   	}
-  	this.warehouseSevice.createWarehouse(lager).subscribe(data=>{
+  	this.warehouseSevice.createWarehouse(warehouse).subscribe(data=>{
   		if(data.success){
   			console.log('Warehouse added!');
   			this.router.navigate(['/dashboard']);

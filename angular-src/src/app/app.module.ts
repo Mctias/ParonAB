@@ -10,8 +10,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LeveranserComponent } from './components/leveranser/leveranser.component';
-import { CreateLagerComponent } from './components/create-lager/create-lager.component';
+import { DeliveriesComponent } from './components/deliveries/deliveries.component';
+import { CreateWarehouseComponent } from './components/create-warehouse/create-warehouse.component';
 
 import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
@@ -27,8 +27,8 @@ const appRoutes: Routes = [
 {path:'', component: LoginComponent},
 {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
 {path:'register', component: RegisterComponent},
-{path: 'leveranser', component: LeveranserComponent, canActivate:[AuthGuard]},
-{path:'createLager', component: CreateLagerComponent, canActivate:[AuthGuard]},
+{path: 'deliveries', component: DeliveriesComponent, canActivate:[AuthGuard]},
+{path:'createWarehouse', component: CreateWarehouseComponent, canActivate:[AuthGuard]},
 {path: 'createDelivery', component: NewDeliveryComponent, canActivate:[AuthGuard]},
 {path: '**', component: NotFoundComponent}
 ]
@@ -40,8 +40,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    LeveranserComponent,
-    CreateLagerComponent,
+    DeliveriesComponent,
+    CreateWarehouseComponent,
     NewDeliveryComponent,
     NotFoundComponent
   ],

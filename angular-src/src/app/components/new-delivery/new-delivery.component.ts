@@ -45,7 +45,7 @@ export class NewDeliveryComponent implements OnInit {
       if(data.success){
         this.addDeliver(delivery);
         //Renavigate to dashboard
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/deliveries']);
       }
       else {
         console.log(data.msg);

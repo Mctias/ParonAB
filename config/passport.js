@@ -3,6 +3,7 @@ const extractJwt = require('passport-jwt').ExtractJwt;
 const User = require('../models/user');
 const config = require('../config/db');
 
+//Passport strategy takes in options and lets us extract token from headers
 module.exports = function(passport){
 	let opts = {};
 	opts.jwtFromRequest = extractJwt.fromAuthHeaderAsBearerToken();

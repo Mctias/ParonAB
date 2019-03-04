@@ -5,22 +5,28 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/db');
 
+//Register route
 router.post('/register', (req, res)=>{
 	let newUser = new User({
+		//Get info from body
 		name: req.body.name,
 		email: req.body.email,
 		password: req.body.password
 	});
 
 	User.addUser(newUser, (err, user)=>{
-		if(err)
-			res.json({success: false, msg: 'Failed to register user'});
+		if(err){
+			if(err.code === 11000) //Is unique?
+				res.json({success: false, msg: 'Name and email must be unique'});
+		}
 		else{
 			res.json({success: true, msg: 'User successfully created'});
 		}
 	});
 });
 
+//Authenticate
+//Weheck for the name. If it exists we compare the passwords. If they matches we send good data
 router.post('/authenticate', (req, res)=>{
 	const name = req.body.name;
 	const password = req.body.password;
@@ -52,15 +58,6 @@ router.post('/authenticate', (req, res)=>{
 			}
 		});
 	});
-});
-
-router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res)=>{ //Protected route
-	res.send('PROFILE');
-});
-
-
-router.get('/validate', (req, res)=>{
-	res.send('VALIDATE');
 });
 
 module.exports = router;
