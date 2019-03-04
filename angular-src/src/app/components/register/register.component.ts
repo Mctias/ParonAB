@@ -10,9 +10,9 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-	name: String;
-	email: String;
-	password: String; 
+	name: string;
+	email: string;
+	password: string; 
 
   constructor(private authService: AuthService,
               private router: Router) { }
@@ -28,6 +28,8 @@ export class RegisterComponent implements OnInit {
       password: this.password
     }
     console.log('ute');
+    this.router.navigate(['/']);
+
     this.authService.registerUser(user).subscribe(data => {
       console.log('inne');
       if(data.success){
@@ -35,7 +37,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       }
       else{
-        console.log('fuckup');
+        console.log(data.msg);
       }
     });
   }

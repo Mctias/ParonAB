@@ -1,3 +1,4 @@
+  <!-- Bootstrap navbar that becomes collapse button when screen is small -->
   <nav class="navbar navbar-default navbar-static-top navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" *ngIf="!authService.loggedIn()" [routerLink]="['/']">Päron AB</a>
     <a class="navbar-brand" *ngIf="authService.loggedIn()" [routerLink]="['/dashboard']">Päron AB</a>
@@ -22,6 +23,9 @@
         </li>
         <li *ngIf="!authService.loggedIn()">
           <a class="nav-link" [routerLink]="['/']">Sign in</a>
+        </li>
+        <li *ngIf="!authService.loggedIn()">
+          <a class="nav-link" [routerLink]="['/register']">Register</a>
         </li>
       </ul>
     </div>

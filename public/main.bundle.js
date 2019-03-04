@@ -31,7 +31,7 @@ var AuthService = (function () {
     AuthService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:3000/users/register', JSON.stringify(user), { headers: headers })
+        return this.http.post('http://localhost:3000/users/register', user, { headers: headers })
             .map(function (res) { return res.json(); }); //(endpoint, object, headers).map(response as json)
     };
     AuthService.prototype.authenticateUser = function (user) {
@@ -800,6 +800,7 @@ var RegisterComponent = (function () {
             password: this.password
         };
         console.log('ute');
+        this.router.navigate(['/']);
         this.authService.registerUser(user).subscribe(function (data) {
             console.log('inne');
             if (data.success) {
@@ -807,7 +808,7 @@ var RegisterComponent = (function () {
                 _this.router.navigate(['/dashboard']);
             }
             else {
-                console.log('fuckup');
+                console.log(data.msg);
             }
         });
     };
@@ -1027,7 +1028,7 @@ module.exports = "<form (submit)=\"onLoginSubmit()\" class=\"form-signin\">\n  <
 /***/ 699:
 /***/ (function(module, exports) {
 
-module.exports = "  <nav class=\"navbar navbar-default navbar-static-top navbar-expand-md navbar-dark bg-dark\">\r\n    <a class=\"navbar-brand\" *ngIf=\"!authService.loggedIn()\" [routerLink]=\"['/']\">Päron AB</a>\r\n    <a class=\"navbar-brand\" *ngIf=\"authService.loggedIn()\" [routerLink]=\"['/dashboard']\">Päron AB</a>\r\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n      <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n      <ul class=\"navbar-nav mr-auto\">\r\n        <li *ngIf=\"authService.loggedIn()\" class=\"nav-item\"  [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Stock</a>\r\n        </li>\r\n        <li *ngIf=\"authService.loggedIn()\" class=\"nav-item\"  [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/leveranser']\">Deliveries</a>\r\n        </li>\r\n        <li *ngIf=\"authService.loggedIn()\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/createLager']\">Create warehouse</a>\r\n        </li>\r\n      </ul>\r\n      <ul class = \"nav navbar-nav navbar-right\">\r\n        <li *ngIf=\"authService.loggedIn()\">\r\n          <a href=\"#\" (click)=\"onLogout()\">Sign out</a>\r\n        </li>\r\n        <li *ngIf=\"!authService.loggedIn()\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/']\">Sign in</a>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n</nav>\r\n"
+module.exports = "  <!-- Bootstrap navbar that becomes collapse button when screen is small -->\r\n  <nav class=\"navbar navbar-default navbar-static-top navbar-expand-md navbar-dark bg-dark\">\r\n    <a class=\"navbar-brand\" *ngIf=\"!authService.loggedIn()\" [routerLink]=\"['/']\">Päron AB</a>\r\n    <a class=\"navbar-brand\" *ngIf=\"authService.loggedIn()\" [routerLink]=\"['/dashboard']\">Päron AB</a>\r\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n      <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n      <ul class=\"navbar-nav mr-auto\">\r\n        <li *ngIf=\"authService.loggedIn()\" class=\"nav-item\"  [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Stock</a>\r\n        </li>\r\n        <li *ngIf=\"authService.loggedIn()\" class=\"nav-item\"  [routerLinkActive]=\"['active']\" [routerLinkActiveOptions] = \"{exact:true}\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/leveranser']\">Deliveries</a>\r\n        </li>\r\n        <li *ngIf=\"authService.loggedIn()\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/createLager']\">Create warehouse</a>\r\n        </li>\r\n      </ul>\r\n      <ul class = \"nav navbar-nav navbar-right\">\r\n        <li *ngIf=\"authService.loggedIn()\">\r\n          <a href=\"#\" (click)=\"onLogout()\">Sign out</a>\r\n        </li>\r\n        <li *ngIf=\"!authService.loggedIn()\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/']\">Sign in</a>\r\n        </li>\r\n        <li *ngIf=\"!authService.loggedIn()\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -1048,7 +1049,7 @@ module.exports = "<h1>Error: Site not found :(</h1>"
 /***/ 702:
 /***/ (function(module, exports) {
 
-module.exports = "<form (submit)=\"onRegisterSubmit()\">\n  <div class=\"form-group\">\n    <label for=\"exampleInputEmail1\">Work ID</label>\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\" id=\"WorkdIDInput\" placeholder=\"Work ID\">\n  </div>\n  <div class=\"form-group\">\n    <label>Email</label>\n    <input type=\"email\" [(ngModel)]=\"email\" name=\"email\" class=\"form-control\" placeholder=\"Email\">\n\n    <label>Password</label>\n    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control\" placeholder=\"Password\">\n  \t\n  </div>\n</form>\n"
+module.exports = "<form (submit)=\"onRegisterSubmit()\">\n  <div class=\"form-group\">\n    <label for=\"exampleInputEmail1\">Work ID</label>\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\" id=\"WorkdIDInput\" placeholder=\"Work ID\">\n  </div>\n  <div class=\"form-group\">\n    <label>Email</label>\n    <input type=\"email\" [(ngModel)]=\"email\" name=\"email\" class=\"form-control\" placeholder=\"Email\">\n\n    <label>Password</label>\n    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control\" placeholder=\"Password\">\n  \t<input type=\"submit\" value= \"Submit\">\n  </div>\n</form>\n"
 
 /***/ }),
 
