@@ -1,0 +1,32 @@
+<!-- Form for creating a new delivery -->
+<form (submit) = "onAddDelivery()">
+	<label>Type of product</label>
+	<br>
+	<span>
+		<!-- Choose one of the products -->
+		<input type="radio" name="productButton" [(ngModel)]="pName" value="jPlatta" required> jPlatta
+		<input type="radio" name="productButton" [(ngModel)]="pName" value="jTelefon" required> jTelefon
+    	<input type="radio" name="productButton" [(ngModel)]="pName" value="Paronklocka" required> Päronklocka
+    </span>
+	<br>
+	<br>
+	<label>Warehouse</label>
+	<!-- Choose one of the warehouses -->
+	<div class="form-group">
+		<select class = "form-control" id="selector1" [(ngModel)]="lager" name = "lager">
+			<option *ngFor = "let lagera of lagers" [value] = "lagera.name">{{lagera.name}}
+			</option>
+		</select>
+	</div>
+	<label>Number of items</label>
+	<!-- Number of items -->
+    <input type="Number" class="form-control" [(ngModel)] = "noItems" name = "noItems" required>
+    <br>
+    <label>Date</label>
+    <!-- The date -->
+    <input type="date" class="form-control" [(ngModel)] = "date" name = "date" required>
+    <br>
+  	<input type="submit" class="btn btn-primary" value ="Submit">
+	<button class="btn btn-danger" (click) = "onCancel()">Cancel</button>  	
+</form>
+

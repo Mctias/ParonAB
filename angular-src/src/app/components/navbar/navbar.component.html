@@ -1,0 +1,28 @@
+  <nav class="navbar navbar-default navbar-static-top navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" *ngIf="!authService.loggedIn()" [routerLink]="['/']">Päron AB</a>
+    <a class="navbar-brand" *ngIf="authService.loggedIn()" [routerLink]="['/dashboard']">Päron AB</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li *ngIf="authService.loggedIn()" class="nav-item"  [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+          <a class="nav-link" [routerLink]="['/dashboard']">Stock</a>
+        </li>
+        <li *ngIf="authService.loggedIn()" class="nav-item"  [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+          <a class="nav-link" [routerLink]="['/leveranser']">Deliveries</a>
+        </li>
+        <li *ngIf="authService.loggedIn()">
+          <a class="nav-link" [routerLink]="['/createLager']">Create warehouse</a>
+        </li>
+      </ul>
+      <ul class = "nav navbar-nav navbar-right">
+        <li *ngIf="authService.loggedIn()">
+          <a href="#" (click)="onLogout()">Sign out</a>
+        </li>
+        <li *ngIf="!authService.loggedIn()">
+          <a class="nav-link" [routerLink]="['/']">Sign in</a>
+        </li>
+      </ul>
+    </div>
+</nav>

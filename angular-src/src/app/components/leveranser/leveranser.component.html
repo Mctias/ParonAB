@@ -1,0 +1,25 @@
+<h2>List</h2>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Warehouse</th>
+      <th scope="col">Product</th>
+      <th scope="col">Number of items</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor ="let delivery of deliveries">
+      <th scope="col" *ngIf ="isPositive(delivery)" class = "table-success">{{delivery.lagerLokal}}</th>
+      <td *ngIf = isPositive(delivery) class = "table-success">{{delivery.product}}</td>
+      <td *ngIf = isPositive(delivery) class = "table-success">{{delivery.noItems}}</td>
+      <td *ngIf = isPositive(delivery) class = "table-success">{{delivery.date}}</td>
+      <th *ngIf = !isPositive(delivery) class = "table-danger">{{delivery.lagerLokal}}</th>
+      <td *ngIf = !isPositive(delivery) class = "table-danger">{{delivery.product}}</td>
+      <td *ngIf = !isPositive(delivery) class = "table-danger">{{delivery.noItems}}</td>
+      <td *ngIf = !isPositive(delivery) class = "table-danger">{{delivery.date}}</td>
+    </tr>
+    
+  </tbody>
+</table>
+<button class = "btn-lg btn-success" (click) = "onCreateNewDelivery()">Report new delivery</button>

@@ -1,0 +1,20 @@
+<br>
+<h1>Warehouse sock</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Warehouse</th>
+      <th scope="col">jPlatta</th>
+      <th scope="col">jTelefon</th>
+      <th scope="col">Päronklocka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor ="let lager of lagers">
+      <th scope="col">{{lager.name}}</th>
+      <td>{{lager.products.jPlatta.noItems}}</td>
+      <td>{{lager.products.jTelefon.noItems}}</td>
+      <td>{{lager.products.Paronklocka.noItems}}</td>
+    </tr>
+  </tbody>
+</table>
